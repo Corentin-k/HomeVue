@@ -2,7 +2,7 @@ import express from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import db from '../db.js';
-import dotenv from 'dotenv';
+
 const router = express.Router();
 const JWT_SECRET = process.env.JWT; // Remplacez par votre secret réel
 
@@ -44,7 +44,7 @@ router.post('/login', (req, res) => {
         }
 
         // Générer le token JWT
-        const token = jwt.sign({ id: user.id, username: user.username, email: user.email }, JWT_SECRET, { expiresIn:'1min' });
+        const token = jwt.sign({ id: user.id, username: user.username, email: user.email }, JWT_SECRET, { expiresIn:'1h' });
 
         // Renvoi des données de l'utilisateur incluant la couleur
         res.json({
@@ -68,7 +68,7 @@ router.put('/update-color', (req, res) => {
     db.query(
         'UPDATE users SET color = ? WHERE username = ?',
         [color, username],
-        (err, results) => {
+        (err) => {
             if (err) {
                 return res.status(500).json({ message: 'Server Error', error: err });
             }
