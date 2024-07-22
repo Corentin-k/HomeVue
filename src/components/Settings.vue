@@ -1,0 +1,96 @@
+﻿<template>
+  <div class="container-settings">
+    <h2>Settings</h2>
+    <div>
+      <label for="color">Choose Default Color:</label>
+      <select id="color" v-model="selectedColor" @change="updateColor">
+        <option value="#bb86fc">Purple</option>
+        <option value="#2196F3">Blue</option>
+        <option value="#4CAF50">Green</option>
+      </select>
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, ref, onMounted } from 'vue';
+import { useUserStore } from '@/store/userStore'; // Importer le store créé avec Pinia
+
+export default defineComponent({
+  name: 'Settings',
+  setup() {
+    const userStore = useUserStore(); // Utiliser le store Pinia pour gérer l'état utilisateur
+
+    // Initialiser selectedColor avec la couleur actuelle du store
+    const selectedColor = ref(userStore.userColor);
+
+    const updateColor = async () => {
+      const userData = userStore.userData;
+
+      if (userData && userData.username) {
+        try {
+
+          await userStore.setDefaultColor(selectedColor.value);
+
+          console.log('Color updated successfully');
+        } catch (error) {
+          console.error('Failed to update color:', error);
+        }
+      } else {
+        console.error('User data is not available or does not contain username');
+      }
+    };
+
+    onMounted(() => {
+      // Mettre à jour la couleur sélectionnée au chargement du composant
+      selectedColor.value = userStore.userColor;
+    });
+
+    return {
+      selectedColor,
+      updateColor,
+    };
+  },
+});
+</script>
+
+<style scoped>
+.container-settings {
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  padding: 2rem;
+  max-width: 300px;
+  margin: 2rem auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+}
+
+h2 {
+  color: #03dac6;
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  color: #b0b0b0;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+select {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #555;
+  border-radius: 5px;
+  background-color: #333;
+  color: #ddd;
+}
+
+option {
+  background-color: #333;
+  color: #ddd;
+  font-size: 1rem;
+}
+</style>
