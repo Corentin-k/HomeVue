@@ -6,12 +6,16 @@
       "@/*": ["src/*"]
     },
     "types": ["node", "vue"],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./node_modules"
+    ],
     "module": "ESNext",
     "moduleResolution": "node",
     "target": "ESNext",
     "jsx": "preserve",
     "allowSyntheticDefaultImports": true,
-
+    "skipLibCheck": true,
     "strict": true,
     "sourceMap": true,
     "resolveJsonModule": true,
