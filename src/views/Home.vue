@@ -1,32 +1,32 @@
 <template>
   <div class="home">
-    <h1>Smart Control System</h1>
-    <p>Welcome to IoT-powered monitoring system.</p>
+    <h1>{{ $t('home.title') }}</h1>
+    <p>{{ $t('home.welcome') }}</p>
     <Vue3Lottie
         animation-link="https://assets2.lottiefiles.com/packages/lf20_GbabwrUY2k.json"
         :height="200"
         :width="200"
     />
 
-    <Login  v-if="!userStore.isLoggedIn"  />
+    <Login v-if="!userStore.isLoggedIn" />
     <div class="feature-grid">
-      
+
       <router-link to="/color" class="feature-item">
         <div>
-          <h3>LED Control</h3>
-          <p>Adjust the color of your LED strip</p>
+          <h3>{{ $t('home.ledControl') }}</h3>
+          <p>{{ $t('home.ledControlDescription') }}</p>
         </div>
       </router-link>
-      
+
       <router-link to="/temperature" class="feature-item">
         <div>
-          <h3>Temperature Monitoring</h3>
-          <p>Keep track of ambient temperature in real-time.</p>
+          <h3>{{ $t('home.temperatureMonitoring') }}</h3>
+          <p>{{ $t('home.temperatureMonitoringDescription') }}</p>
         </div>
       </router-link>
-     
+
     </div>
-    
+
   </div>
 </template>
 
@@ -46,11 +46,8 @@ export default defineComponent({
 
   components: {
     Login,
-   
-    },
-  
-})
-  
+  },
+});
 </script>
 
 <style scoped>

@@ -1,7 +1,7 @@
 {
   
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"]
     },
@@ -22,7 +22,7 @@
     "esModuleInterop": true,
     "lib": ["ESNext", "DOM"]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx","src/**/*.js", "src/**/*.vue", "src/App.vue", "src/eventBus.ts"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx","src/**/*.js", "src/**/*.vue", "src/App.vue", "src/eventBus.ts", "./*.js"],
 "exclude": ["node_modules"]
 
   

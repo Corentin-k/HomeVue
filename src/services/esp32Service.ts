@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const ESP32_URL = 'http://192.168.1.101';
-
+const ESP32_URL = 'http://192.168.1.201';
+const SERVER_URL = 'http://localhost:3000';
 export async function setLedColor(color: string) {
   const rgb = hexToRgb(color);
   if (rgb) {
@@ -37,6 +37,15 @@ export async function getDHT11Data(): Promise<{ temperature: number; humidity: n
     throw new Error(`HTTP error! status: ${response.status}`);
   }
   const data = await response.json();
+  await saveSensorData(data);
   console.log('Parsed data:', data);
   return data;
+}
+async function saveSensorData(data: any) {
+  try {
+    await axios.post(`${SERVER_URL}/api/sensor/save-data`, data);
+    console.log('Data saved to server');
+  } catch (error) {
+    console.error('Error saving data to server:', error);
+  }
 }

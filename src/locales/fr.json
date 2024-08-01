@@ -1,0 +1,10 @@
+{
+  "home": {
+    "title": "Système de Contrôle Intelligent",
+    "welcome": "Bienvenue dans le système de surveillance alimenté par IoT.",
+    "ledControl": "Contrôle des LED",
+    "ledControlDescription": "Ajustez la couleur de votre bande LED",
+    "temperatureMonitoring": "Surveillance de la Température",
+    "temperatureMonitoringDescription": "Suivez la température ambiante en temps réel."
+  }
+}

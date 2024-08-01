@@ -1,0 +1,10 @@
+{
+  "home": {
+    "title": "Smart Control System",
+    "welcome": "Welcome to IoT-powered monitoring system.",
+    "ledControl": "LED Control",
+    "ledControlDescription": "Adjust the color of your LED strip",
+    "temperatureMonitoring": "Temperature Monitoring",
+    "temperatureMonitoringDescription": "Keep track of ambient temperature in real-time."
+  }
+}

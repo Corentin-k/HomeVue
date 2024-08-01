@@ -43,6 +43,7 @@ export default defineComponent({
     };
   },
   methods: {
+    // Fonction pour mettre à jour la couleur d'affichage en fonction de la couleur sélectionnée et de l'intensité
     updateColor() {
       const rgb = this.hexToRgb(this.selectedColor);
       if (rgb) {
@@ -50,6 +51,7 @@ export default defineComponent({
         this.displayColor = this.rgbToHex(adjustedRgb);
       }
     },
+    // Fonction pour convertir une couleur hexadécimale en RGB
     hexToRgb(hex: string): [number, number, number] | null {
       const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
       return result ? [
@@ -64,10 +66,14 @@ export default defineComponent({
         return hex.length === 1 ? "0" + hex : hex;
       }).join('');
     },
+    // Fonction pour ajuster l'intensité de la couleur
     adjustIntensity(rgb: [number, number, number], intensity: number): [number, number, number] {
       const factor = intensity / 100;
       return rgb.map(channel => Math.round(channel * factor)) as [number, number, number];
     },
+
+    // Fonction pour envoyer la couleur sélectionnée à l'ESP32
+
     async sendColor() {
       this.loading = true;
       this.error = false;
@@ -82,6 +88,8 @@ export default defineComponent({
         this.loading = false;
       }
     },
+
+    // Fonction pour vérifier la connexion avec l'ESP32
     async checkConnection() {
       this.loading = true;
       this.error = false;
@@ -97,17 +105,20 @@ export default defineComponent({
         this.loading = false;
       }
     },
+    // Fonction pour rafraîchir les données
     refreshData() {
       this.error = false;
       this.loading = true;
       this.connected = false;
       this.updateColor();
-      this.checkConnection();  // Check connection when refreshing data
+      this.checkConnection();
     }
   },
   mounted() {
-    this.updateColor(); // Initialize display color based on selectedColor and intensity
-    this.checkConnection(); // Check connection when component is mounted
+    // Initialisation de la couleur d'affichage avec la couleur sélectionnée par défaut lorsqu'on ouvre la page
+    // et vérification de la connexion avec l'ESP32
+    this.updateColor();
+    this.checkConnection();
   }
 });
 </script>

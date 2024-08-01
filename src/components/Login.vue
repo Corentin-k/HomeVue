@@ -2,13 +2,15 @@
   <div class="container-login" v-if="!userStore.isLoggedIn">
     <h2>LOGIN</h2>
     <input type="text" v-model="username" placeholder="Username" />
-    <input type="password" v-model="password" placeholder="Password" />
+    <input type="password" v-model="password" placeholder="Password" @keyup.enter="login" />
     <router-link to="/signup">
       <button class="create-account">Create Account</button>
     </router-link>
     <button class="button-login" @click="login">Login</button>
     <p v-if="error" class="error-message">{{ error }}</p>
+
   </div>
+
   <div v-else class="container-return">
     <h2>Already Logged In</h2>
     <router-link to="/home" class="return">
@@ -25,81 +27,19 @@ import { useUserStore } from '@/store/userStore';
 export default defineComponent({
   name: 'Login',
   setup() {
-
-      const username = ref('');
-      const password = ref('');
-      const error = ref('');
+    const username = ref('');
+    const password = ref('');
+    const error = ref('');
     const userStore = useUserStore();
-      const router = useRouter();
+    const router = useRouter();
 
     const login = async () => {
       try {
         await userStore.login({ email: username.value, password: password.value });
         router.push('/home');
-      } catch (error) {
-        console.error('Login error:', error);
-      }
-    };
-
-      return {
-        username,
-        password,
-        error,
-        login,
-        userStore,
-      };
-    },
-  });
-
-</script>
-
-<!--
-
-
-
-<template>
-  <div class="container-login" v-if="!userStore.isLoggedIn">
-    <h2>LOGIN</h2>
-    <input type="text" v-model="username" placeholder="Username" />
-    <input type="password" v-model="password" placeholder="Password" />
-    <index-link to="/signup">
-      <button class="create-account">Create Account</button>
-    </index-link>
-    <button class="button-login" @click="login">Login</button>
-    <p v-if="error" class="error-message">{{ error }}</p>
-  </div>
-  <div v-if="userStore.isLoggedIn" class="container-return">
-    <h2>Already Logged In</h2>
-    <index-link to="/home" class="return">
-      <button class="button-home">Go to Home</button>
-    </index-link>
-  </div>
-</template>
-
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
-import { useRouter } from 'vue-index';
-import { authenticate } from '@/services/usersService';
-import { useUserStore } from '@/store/userStore';
-
-export default defineComponent({
-  name: 'Login',
-  setup() {
-    const username = ref('');
-    const password = ref('');
-    const index = useRouter();
-    const userStore = useUserStore();
-    const error = ref('');
-
-    const login = () => {
-      const user = authenticate(username.value, password.value);
-      if (user) {
-        userStore.setLoggedIn(true);
-        userStore.setDefaultColor(user.color);
-        index.push('/home');
-      } else {
-        error.value = 'Invalid credentials';
-        userStore.setLoggedIn(false);
+      } catch (err) {
+        console.error('Login error:', err);
+        error.value = 'Error in email or password';
       }
     };
 
@@ -114,7 +54,8 @@ export default defineComponent({
 });
 </script>
 
--->
+
+
 <style scoped>
 .container-login,
 .container-return {
@@ -134,7 +75,7 @@ h2 {
 }
 
 input {
-  width: 100%;
+  width: 90%;
   padding: 0.75rem;
   margin-bottom: 1rem;
   color: #cccccc;

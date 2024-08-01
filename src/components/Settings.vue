@@ -9,29 +9,34 @@
         <option value="#4CAF50">Green</option>
       </select>
     </div>
+    <div>
+      <label for="language-switch">Choose Language:</label>
+      <select id="language-switch" v-model="selectedLanguage" @change="changeLanguage">
+        <option value="en">English</option>
+        <option value="fr">Français</option>
+      </select>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue';
-import { useUserStore } from '@/store/userStore'; // Importer le store créé avec Pinia
+import { useUserStore } from '@/store/userStore'; // Import the store created with Pinia
+import { useI18n } from 'vue-i18n';
 
 export default defineComponent({
   name: 'Settings',
   setup() {
-    const userStore = useUserStore(); // Utiliser le store Pinia pour gérer l'état utilisateur
-
-    // Initialiser selectedColor avec la couleur actuelle du store
+    const userStore = useUserStore(); // Use Pinia store for user state management
+    const { locale } = useI18n();
     const selectedColor = ref(userStore.userColor);
+    const selectedLanguage = ref(locale.value);
 
     const updateColor = async () => {
       const userData = userStore.userData;
-
       if (userData && userData.username) {
         try {
-
           await userStore.setDefaultColor(selectedColor.value);
-
           console.log('Color updated successfully');
         } catch (error) {
           console.error('Failed to update color:', error);
@@ -41,14 +46,16 @@ export default defineComponent({
       }
     };
 
+
     onMounted(() => {
-      // Mettre à jour la couleur sélectionnée au chargement du composant
       selectedColor.value = userStore.userColor;
     });
 
     return {
       selectedColor,
+      selectedLanguage,
       updateColor,
+
     };
   },
 });

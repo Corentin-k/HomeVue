@@ -10,7 +10,7 @@ export const useUserStore = defineStore('user', {
   actions: {
     async register(credentials) {
       try {
-        const { data } = await axios.post('http://localhost:3000/api/auth/register', credentials);
+        const { data } = await axios.post(`http://localhost:3000/api/auth/register`, credentials);
         this.setUserData(data);
       } catch (error) {
         throw new Error('Registration failed');
@@ -18,9 +18,8 @@ export const useUserStore = defineStore('user', {
     },
     async login(credentials) {
       try {
-        const { data } = await axios.post('http://localhost:3000/api/auth/login', credentials);
+        const { data } = await axios.post(`http://localhost:3000/api/auth/login`, credentials);
         await this.setUserData(data);
-
       } catch (error) {
         console.error('Login error:', error);
         throw new Error('Login failed');
@@ -50,7 +49,7 @@ export const useUserStore = defineStore('user', {
 
       if (userData && userData.username) {
         try {
-          await axios.put('http://localhost:3000/api/auth/update-color', {
+          await axios.put(`http://localhost:${import.meta.env.VITE_API_PORT}/api/auth/update-color`, {
             username: userData.username,
             color: newColor
           });

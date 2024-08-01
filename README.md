@@ -1,11 +1,15 @@
-# Vue 3 + TypeScript + Vite
+# Projet découverte Vue.js - 2024
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Description
+Site web de domotique pour gérer un capteur de température et d'humidité DHT11 et un ruban LED RGB WS2812B grâce à un ESP32.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
-
-npm install @fortawesome/fontawesome-svg-core @fortawesome/vue-fontawesome @fortawesome/free-solid-svg-icons
-npm create vite@latest nom-de-votre-projet --template vue
+## Installation
+1. Cloner le projet
+2. Installer les dépendances
+```bash
 npm install
-npm install @fortawesome/fontawesome-svg-core @fortawesome/vue-fontawesome @fortawesome/free-solid-svg-icons
-npm install vue-index
+```
+3. Lancer le serveur de développement
+```bash
+npm run serve
+```

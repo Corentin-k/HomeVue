@@ -6,6 +6,7 @@
       <router-link to="/temperature" class="nav-item">Temperature</router-link>
       <router-link to="/Allcomponents" class="nav-item">All</router-link>
       <router-link to="/settings" class="nav-item">Settings</router-link>
+
       <router-link v-if="!userStore.isLoggedIn" to="/login" class="nav-item right-item">Login</router-link>
       <button v-if="userStore.isLoggedIn" @click="logout" class="nav-item right-item">Logout</button>
     </nav>
