@@ -1,0 +1,52 @@
+{
+  "name": "domotique",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:node\" \"npm run dev:vite\"",
+    "dev:node": "node ./backends/index.js",
+    "dev:vite": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview",
+    "start": "concurrently \"node ./backends/index.js\" \"vite\""
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/vue-fontawesome": "^3.0.8",
+    "@types/vue-router": "^2.0.0",
+    "axios": "^1.7.2",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "chart.js": "^4.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0",
+    "line-chart": "^2.0.4",
+    "lottie-web": "^5.12.2",
+    "mysql2": "^3.10.3",
+    "pinia": "^2.1.7",
+    "uuid": "^10.0.0",
+    "vue": "^3.4.33",
+    "vue-chartkick": "^1.1.0",
+    "vue-i18n": "^9.13.1",
+    "vue-router": "^4.4.0",
+    "vue3-lottie": "^3.3.0",
+    "vuex": "^4.1.0"
+  },
+  "devDependencies": {
+    "@babel/types": "^7.24.9",
+    "@types/jwt-decode": "^3.1.0",
+    "@types/node": "^20.14.10",
+    "@types/uuid": "^10.0.0",
+    "@types/vue-chartkick": "^0.5.0",
+    "@vitejs/plugin-vue": "^5.0.5",
+    "concurrently": "^8.2.2",
+    "typescript": "^5.5.3",
+    "vite": "^5.3.1",
+    "vue-tsc": "^1.6.5"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "types": ["node", "vue"],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./node_modules"
+    ],
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "target": "ESNext",
+    "jsx": "preserve",
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "lib": ["ESNext", "DOM"]
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx","src/**/*.js", "src/**/*.vue", "src/App.vue", "src/eventBus.ts", "./*.js"],
+"exclude": ["node_modules"]
+
+  
+
+}
