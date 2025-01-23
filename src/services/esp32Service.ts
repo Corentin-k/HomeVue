@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const ESP32_URL = 'http://192.168.1.201';
+const ESP32_URL = 'http://192.168.0.201';
 const SERVER_URL = 'http://localhost:3000';
 export async function setLedColor(color: string) {
   const rgb = hexToRgb(color);
